@@ -19,22 +19,22 @@ def readJson(fileName):
 def getDirs(jsonData):
     Dirs = []
     for obj in range(len(jsonData)):
-        Dirs.append(jsonData[obj]['key'][0]['dir'])
+        Dirs.append(jsonData[obj]['module'][0]['path']['local_path'])
     return Dirs
 def getDirUrlLbl(jsonData):
     Dirs = []
     url = []
     keyName = []
     for obj in range(len(jsonData)):
-        Dirs.append(jsonData[obj]['key'][0]['dir'])
-        url.append(jsonData[obj]['key'][0]['url'])
-        keyName.append(jsonData[obj]['key'][0]['name'])
+        Dirs.append(jsonData[obj]['module'][0]['path']['local_path'])
+        url.append(jsonData[obj]['module'][0]['path']['remote_path'])
+        keyName.append(jsonData[obj]['module'][0]['name'])
     return Dirs,url,keyName
 
 def getURL():
     url = []
     for obj in range(len(jsonData)):
-        url.append(jsonData[obj]['key'][0]['url'])
+        url.append(jsonData[obj]['module'][0]['url'])
     return url
 
 def _RESET_(jsonData):
@@ -91,8 +91,11 @@ if __name__ == "__main__":
         parser.print_help
     else:    
         filePath = args.JsonFile
-        jsonData = readJson(filePath)
-        keyList = [jsonData[i]['key'][0]['name'] for i in range(len(jsonData))]
+        jsonDataRaw = readJson(filePath)
+        jsonDataV = jsonDataRaw[0]
+        jsonData = jsonDataRaw[1:] 
+        keyList = [jsonData[i]['module'][0]['name'] for i in range(len(jsonData))]
+        # print(args.Command)
         if args.Command in updateCommands:
             _Update_(jsonData)
         elif args.Command in deleteCommands:
@@ -104,3 +107,6 @@ if __name__ == "__main__":
 
         else:
             print("Unknown Command. \n pass [-h] along with this filename to find possible commands.")
+        # print("Response Json Data : ",jsonData)
+        # print("Length of Json Data : ",len(jsonData))
+        # print("Found Keys : ",[jsonData[i]['key'][0]['name'] for i in range(len(jsonData))])

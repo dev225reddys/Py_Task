@@ -1,0 +1,13 @@
+-------------------Instructions---------------
+Running script : 
+python [filename] [Command] [json_File_Name]
+ex: python hci_json.py ALL data.json
+
+----------------------------------------------
+Get Help from the script 
+python [filename] -h
+ex: python hci_json.py -h
+---------------------------------------------
+Acceptable List of Commands 
+['update','UPDATE','upd']
+['reset','delete','DELETE','RESET','del']

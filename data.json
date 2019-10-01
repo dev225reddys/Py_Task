@@ -1,39 +1,31 @@
-[{
-    "version": 1
-},
 {
-    "module": [{
-        "name": "ap3",
-        "description":"Some Description",
-        "path": {
-            "remote_path": "https://svn/asd/SoftwareComponents/SPI/AVR32/OSEK/tags/SC_SPI_AVR32_OSEK_000106_SantaCruz_002",
-            "local_path": "audioPilot3_src1",
-            "type" : "svn"
-        }
-    }]
-},
-{
+    "version":1,
+    "module":{
+        "ap3":{
+            "description":"Description",
+            "path":[{
+                "remote_path":"https://svn/asd/SoftwareComponents/SPI/AVR32/OSEK/tags/SC_SPI_AVR32_OSEK_000106_SantaCruz_002",
+                "local_path":"audioPilot3_src1",
+                "type":"svn"           
 
-    "module": [{
-        "name": "ap3",
-        "description":"Some Description",
-        "path": {
-            "remote_path": "https://svn/asd/SoftwareComponents/NVRAM/tags/SC_NVRAM_000224_SantaCruz_003",
-            "local_path": "audioPilot3_src2",
-            "type" : "svn"
-        }
-    }]
-},
-{
+            },
+            {
+                "remote_path":"https://svn/asd/SoftwareComponents/NVRAM/tags/SC_NVRAM_000224_SantaCruz_003",
+                "local_path":"audioPilot3_src2",
+                "type":"svn"
+            }
+         ]
+           
+        },           
+      
+        "medusa":{
+            "description":"Description",
+            "path":[{
+                "remote_path":"https://svn/asd/SoftwareComponents/OSEK/AVR32/tools/tags/SC_OSEK_AVR32_030200",
+                "local_path":"medusa_src",
+                "type":"svn"            
 
-    "module": [{
-        "name": "medusa",
-        "description":"Some Description",
-        "path": {
-            "remote_path": "https://svn/asd/SoftwareComponents/OSEK/AVR32/tools/tags/SC_OSEK_AVR32_030200",
-            "local_path": "medusa_src",
-            "type" : "svn"
+            } ]
         }
-    }]
+    }
 }
-]

@@ -40,7 +40,6 @@ def getDirs(jsonData,keyList):
         if len(jsonData['module'][key]['path']) > 1:
             for dir in range(len(jsonData['module'][key]['path'])):
                 Dirs[key].append(jsonData['module'][key]['path'][dir]['local_path'])
-                # Dirs.append(jsonData['module'][key]['path'][dir]['local_path'])
         else:
             Dirs[key].append(jsonData['module'][key]['path'][0]['local_path'])
     return Dirs
@@ -59,7 +58,6 @@ def getAllDat(jsonData,keyList):
             for dir in range(len(jsonData['module'][key]['path'])):
                 AllDat[key]["local_path"].append(jsonData['module'][key]['path'][dir]['local_path'])
                 AllDat[key]["remote_path"].append(jsonData['module'][key]['path'][dir]['remote_path'])
-                # Dirs.append(jsonData['module'][key]['path'][dir]['local_path'])
         else:
             AllDat[key]["local_path"].append(jsonData['module'][key]['path'][0]['local_path'])
             AllDat[key]["remote_path"].append(jsonData['module'][key]['path'][0]['remote_path'])
@@ -78,7 +76,6 @@ def getkeyData(jsonData,PasskeyV):
         for dir in range(len(jsonData['module'][key]['path'])):
             keyDat[key]["local_path"].append(jsonData['module'][key]['path'][dir]['local_path'])
             keyDat[key]["remote_path"].append(jsonData['module'][key]['path'][dir]['remote_path'])
-            # Dirs.append(jsonData['module'][key]['path'][dir]['local_path'])
     else:
         keyDat[key]["local_path"].append(jsonData['module'][key]['path'][0]['local_path'])
         keyDat[key]["remote_path"].append(jsonData['module'][key]['path'][0]['remote_path'])
@@ -87,12 +84,10 @@ def getkeyData(jsonData,PasskeyV):
 def getDirUrlLbl(jsonData,keyList):
     Dirs = {}
     url = {}
-    # keyName = []
     for keyi in range(len(keyList)):
         key = keyList[keyi]
         Dirs.append(jsonData[0]['module'][key]['path'][0]['local_path'])
         url.append(jsonData[0]['module'][key]['path'][0]['remote_path'])
-        # keyName.append(jsonData[obj]['key'][0]['name'])
     return Dirs,url
 
 def getURL():
@@ -129,8 +124,6 @@ def svn_co(keyV, local_path, remote_path):
 
 def checkAll(jsonData,keyList):
     getAllDat1 = getAllDat(jsonData,keyList)
-    # print(getAllDat1.keys())
-    # exit()
     for keyV in getAllDat1.keys():
         if len(getAllDat1[keyV]["local_path"]) > 1:
             for pos in range(len(getAllDat1[keyV]["local_path"])):
@@ -144,13 +137,6 @@ def checkAll(jsonData,keyList):
             remote_path = getAllDat1[keyV]["remote_path"][0]
             svn_co(keyV,local_path,remote_path)
 
-    # for dire,eurl,keyv in zip(Dirs,url,keyList):
-    #     if path.isdir(dire):
-    #         print("Path {0} -> {1} already exists. Skipping..".format(keyv,dire))
-    #     else:
-    #         print("Checking out :  \t {0} -> {1}: ".format(keyv,dire))
-    #         callSVN = sp.getoutput('svn co '+eurl+' '+dire)
-    #         print(callSVN)
 def checkKey(jsonData,PasskeyV):
     keyData = getkeyData(jsonData,PasskeyV)
     if len(keyData[PasskeyV]["local_path"]) > 1:
@@ -162,12 +148,6 @@ def checkKey(jsonData,PasskeyV):
         local_path = keyData[PasskeyV]["local_path"][0]
         remote_path = keyData[PasskeyV]["remote_path"][0]
         svn_co(PasskeyV,local_path,remote_path)
-    # if path.isdir(dire):
-    #     print("Path {0} -> {1} already exists. Skipping..".format(keyv,dire))
-    # else:
-    #     print("Checking out :  \t {0} -> {1}: ".format(keyv,dire))
-    #     callSVN = sp.getoutput('svn co '+eurl+' '+dire)
-    #     print(callSVN)
 
 
 if __name__ == "__main__":
@@ -185,12 +165,7 @@ if __name__ == "__main__":
     else:    
         filePath = args.JsonFile
         jsonData = readJson(filePath)
-        # keyList = [jsonData[i]['key'][0]['name'] for i in range(len(jsonData))]
         keyList = list(jsonData['module'].keys())
-        # print(keyList)
-        # print((jsonData['module']['ap3']["path"][1]))
-        # exit()
-        # print(args.Command)
         if args.Command in updateCommands:
             _Update_(jsonData,keyList)
         elif args.Command in deleteCommands:
@@ -202,6 +177,3 @@ if __name__ == "__main__":
 
         else:
             print("Unknown Command. \n pass [-h] along with this filename to find possible commands.")
-        # print("Response Json Data : ",jsonData)
-        # print("Length of Json Data : ",len(jsonData))
-        # print("Found Keys : ",[jsonData[i]['key'][0]['name'] for i in range(len(jsonData))])

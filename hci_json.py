@@ -81,15 +81,6 @@ def getkeyData(jsonData,PasskeyV):
         keyDat[key]["remote_path"].append(jsonData['module'][key]['path'][0]['remote_path'])
     return keyDat
 
-def getDirUrlLbl(jsonData,keyList):
-    Dirs = {}
-    url = {}
-    for keyi in range(len(keyList)):
-        key = keyList[keyi]
-        Dirs.append(jsonData[0]['module'][key]['path'][0]['local_path'])
-        url.append(jsonData[0]['module'][key]['path'][0]['remote_path'])
-    return Dirs,url
-
 def getURL():
     url = []
     for obj in range(len(jsonData)):

@@ -1,5 +1,6 @@
-from modules.scm import import scm
+from modules.scm import scm
 from modules import rjson
+from modules import argp
 import pysvn
 
 
@@ -9,6 +10,5 @@ import pysvn
 #     def __init__(self, scm_type):
 #         self.type = scm_type
 
-client = pysvn.Client()
-client.callback_ssl_server_trust_prompt = ssl_server_trust_prompt
-client.callback_get_login = get_login
+
+# YET TO IMPLEMENT
